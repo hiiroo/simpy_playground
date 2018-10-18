@@ -3,3 +3,4 @@ venv1/*
 .idea/*
 __pycache__/*
 .vs/slnx.sqlite
+.vs/VSWorkspaceState.json
