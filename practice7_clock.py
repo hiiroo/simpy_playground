@@ -12,19 +12,20 @@ hour = 0
 coincidence = []
 
 def clock_coincidence(env, threshold):
-    global second, minute, hour, aci_second, aci_minute, aci_hour
-    second=second+1
-    minute+=aci_minute
-    hour+=aci_hour
+    while(True):
+        global second, minute, hour, aci_second, aci_minute, aci_hour
+        second+=1
+        minute+=aci_minute
+        hour+=aci_hour
 
-    #threshold 0.025
-    if(math.fabs(minute-hour) <= threshold):
-        coincidence.append(second)
+        # print(math.fabs(minute%360-hour%360))
+        if(math.fabs(minute%360-hour%360) <= threshold):
+            coincidence.append(second)
 
-    yield env.timeout(1)
+        yield env.timeout(1)
 
 env = simpy.Environment()
 env.process(clock_coincidence(env, 0.025))
 env.run(until=7200)
 
-print(coincidence)
+print([(c/60)%60 for c in coincidence])
