@@ -4,20 +4,23 @@ import random
 import numpy as np
 values = []
     
-def generate_normal(env):
+def generate_mixture(env):
     while(True):
-        values.append(random.normalvariate(10, 2))
+        if(random.random() <= 0.3):
+            values.append(random.normalvariate(5, 3))
+        else:
+            values.append(random.normalvariate(10, 2))
         yield env.timeout(1)
 
 env = simpy.Environment()
-env.process(generate_normal(env))
+env.process(generate_mixture(env))
 
 env.run(until=100000)
 
 numpy_values = np.array(values)
 plt.hist(
     values, 
-    1000, 
+    100, 
     facecolor='red', 
     # alpha=0.5, 
     label='Mean: %f Stddev:%f'%(numpy_values.mean(), numpy_values.std()))
