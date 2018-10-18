@@ -1,6 +1,6 @@
 import simpy
 
-total = 0 
+total = 0
 
 def compute(env, c):
     global total

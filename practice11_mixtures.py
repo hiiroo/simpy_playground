@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import random
 import numpy as np
 values = []
-    
+
 def generate_mixture(env):
     while(True):
         if(random.random() <= 0.3):
@@ -19,9 +19,9 @@ env.run(until=100000)
 
 numpy_values = np.array(values)
 plt.hist(
-    values, 
-    100, 
-    facecolor='red', 
-    # alpha=0.5, 
+    values,
+    100,
+    facecolor='red',
+    # alpha=0.5,
     label='Mean: %f Stddev:%f'%(numpy_values.mean(), numpy_values.std()))
 plt.show()
