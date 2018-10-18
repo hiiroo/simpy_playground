@@ -2,3 +2,4 @@ venv1/*
 .vscode/*
 .idea/*
 __pycache__/*
+.vs/slnx.sqlite
